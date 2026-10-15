@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>商品详情</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header" data-site-header></header>
+<div class="notice-bar" data-site-notice hidden></div>
+
+<main class="page">
+  <div class="wrap">
+    <nav class="breadcrumb">
+      <a href="/">全部商品</a><span>/</span><span id="crumbCat"></span><span>/</span><span id="crumbName"></span>
+    </nav>
+
+    <div id="loading" class="detail">
+      <div class="skeleton" style="aspect-ratio:4/3"></div>
+      <div class="stack">
+        <div class="skeleton" style="height:34px"></div>
+        <div class="skeleton" style="height:22px;width:60%"></div>
+        <div class="skeleton" style="height:120px"></div>
+      </div>
+    </div>
+
+    <div id="content" hidden>
+      <div class="detail">
+        <div class="gallery" id="gallery"></div>
+
+        <div>
+          <h1 id="pName"></h1>
+          <div class="subtitle" id="pSubtitle"></div>
+
+          <div class="price-box">
+            <div class="price big"><span class="cur">¥</span><span id="pPrice"></span><span id="pOld"></span></div>
+            <div class="facts">
+              <span>发货方式 <b id="pDelivery"></b></span>
+              <span>库存 <b id="pStock"></b></span>
+              <span>已售 <b id="pSales"></b></span>
+              <span>分类 <b id="pCategory"></b></span>
+            </div>
+          </div>
+
+          <div id="soldOutNotice" class="alert alert-warn" hidden>
+            <span>⚠️</span>
+            <div>该商品当前缺货，可以先收藏，或联系客服补货后再下单。</div>
+          </div>
+
+          <div class="panel" style="margin-top:16px">
+            <div class="panel-head"><h3>填写下单信息</h3></div>
+            <div class="panel-body stack">
+
+              <div class="field">
+                <label>购买数量</label>
+                <div class="row">
+                  <div class="qty">
+                    <button type="button" id="qtyMinus" aria-label="减少">−</button>
+                    <input type="number" id="qty" value="1" min="1" inputmode="numeric" aria-label="购买数量">
+                    <button type="button" id="qtyPlus" aria-label="增加">+</button>
+                  </div>
+                  <span class="hint" id="qtyHint"></span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="required" for="contact">联系方式</label>
+                <input class="input" id="contact" type="text" maxlength="80" autocomplete="email"
+                       placeholder="邮箱 / QQ / 手机号，用于接收卡密和查询订单">
+                <span class="hint" id="contactHint"></span>
+              </div>
+
+              <div id="shipFields" hidden class="stack">
+                <div class="field">
+                  <label class="required" for="rName">收件人姓名</label>
+                  <input class="input" id="rName" type="text" maxlength="40" autocomplete="name" placeholder="请输入真实姓名">
+                </div>
+                <div class="field">
+                  <label class="required" for="rPhone">收件人手机号</label>
+                  <input class="input" id="rPhone" type="tel" maxlength="20" autocomplete="tel" placeholder="11 位手机号">
+                </div>
+                <div class="field">
+                  <label class="required" for="rAddr">收货地址</label>
+                  <textarea class="textarea" id="rAddr" maxlength="200" rows="3"
+                            placeholder="省 / 市 / 区 + 详细地址"></textarea>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="remark">订单备注（选填）</label>
+                <input class="input" id="remark" type="text" maxlength="200" placeholder="有特殊要求可以写在这里">
+              </div>
+
+              <div class="total-bar">
+                <span class="label">应付金额</span>
+                <span class="value"><span style="font-size:18px">¥</span><span id="total">0.00</span></span>
+              </div>
+
+              <button class="btn btn-primary btn-lg btn-block" id="submitBtn" type="button">
+                立即下单
+              </button>
+              <div class="hint" style="text-align:center" id="submitHint"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="descSection" hidden>
+        <div class="section-title">商品详情</div>
+        <div class="panel"><div class="panel-body"><div class="rich" id="pDesc"></div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/product.js"></script>
+</body>
+</html>

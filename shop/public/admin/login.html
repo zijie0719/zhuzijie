@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>商家后台登录</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<div class="login-page">
+  <div class="login-card">
+    <div class="logo-row">
+      <span class="mark">店</span>
+      <h1>商家后台</h1>
+    </div>
+    <div class="sub" id="loginSub">登录后可以管理商品、卡密、订单和收款设置</div>
+
+    <form class="stack" id="loginForm" autocomplete="on">
+      <div class="field">
+        <label for="username">管理员账号</label>
+        <input class="input" id="username" name="username" type="text"
+               autocomplete="username" required autofocus maxlength="64">
+      </div>
+      <div class="field">
+        <label for="password">密码</label>
+        <input class="input" id="password" name="password" type="password"
+               autocomplete="current-password" required maxlength="128">
+      </div>
+
+      <div id="err" class="alert alert-danger" hidden><span>⚠️</span><div></div></div>
+
+      <button class="btn btn-primary btn-lg btn-block" id="loginBtn" type="submit">登录</button>
+    </form>
+
+    <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center">
+      <a href="/" style="font-size:13px;color:var(--text-faint)">← 返回店铺首页</a>
+      <button class="icon-btn" data-theme-toggle title="切换主题" type="button">
+        <span data-theme-icon>☾</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/common.js"></script>
+<script src="/js/admin-login.js"></script>
+</body>
+</html>

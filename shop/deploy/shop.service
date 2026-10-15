@@ -1,0 +1,55 @@
+# 自助下单网站 —— systemd 服务单元
+#
+# 安装：
+#   cp deploy/shop.service /etc/systemd/system/shop.service
+#   systemctl daemon-reload
+#   systemctl enable --now shop
+#
+# 常用命令：
+#   systemctl status shop     查看运行状态
+#   systemctl restart shop    重启
+#   systemctl stop shop       停止
+#   journalctl -u shop -f     实时看日志
+#
+# 改端口 / 路径就改下面的 Environment 和 WorkingDirectory，改完记得
+# systemctl daemon-reload && systemctl restart shop
+
+[Unit]
+Description=自助下单网站 (zizhu-shop)
+Documentation=file:///www/shop/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/www/shop
+
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOST=127.0.0.1
+# 挂在 Nginx 后面时打开，限流才能拿到买家的真实 IP
+Environment=TRUST_PROXY=1
+
+# 如果 node 不在 /usr/bin/node，用 `which node` 查出来替换掉
+ExecStart=/usr/bin/node server.js
+
+Restart=always
+RestartSec=3
+# 反复崩溃时不要无限重启，超过 5 次就先停下
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=shop
+
+# 基础加固：禁止提权、保护系统目录
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/www/shop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>订单支付</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header" data-site-header></header>
+
+<main class="page">
+  <div class="wrap">
+
+    <div id="gate" hidden class="panel" style="max-width:460px;margin:60px auto">
+      <div class="panel-head"><h3>验证订单</h3></div>
+      <div class="panel-body stack">
+        <div class="alert alert-info">
+          <span>🔐</span>
+          <div>为了你的订单安全，请输入下单时填写的联系方式。</div>
+        </div>
+        <div class="field">
+          <label for="gateContact">联系方式</label>
+          <input class="input" id="gateContact" type="text" maxlength="80" placeholder="邮箱 / QQ / 手机号">
+        </div>
+        <button class="btn btn-primary btn-block" id="gateBtn" type="button">查看订单</button>
+      </div>
+    </div>
+
+    <div id="skeleton" class="pay-layout">
+      <div class="skeleton" style="height:320px"></div>
+      <div class="skeleton" style="height:420px"></div>
+    </div>
+
+    <div id="content" hidden>
+      <div class="pay-layout">
+
+        <!-- 左：订单信息 + 付款步骤 -->
+        <div class="stack">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>订单信息</h3>
+              <span class="pill pending" id="statusPill">待付款</span>
+            </div>
+            <div class="panel-body stack">
+              <div class="order-meta" id="orderMeta"></div>
+
+              <div id="countdown" class="alert alert-warn" hidden>
+                <span>⏳</span>
+                <div>请在 <b id="countdownText">--:--</b> 内完成付款，超时订单将自动关闭。</div>
+              </div>
+
+              <div class="section-title" style="margin:4px 0 0">付款流程</div>
+              <div class="steps">
+                <div class="step">扫描右侧收款码，用微信或支付宝付款</div>
+                <div class="step">按下方金额付款，并在<strong>备注中填写订单号</strong></div>
+                <div class="step">付款后回到本页，点击「我已完成付款」</div>
+                <div class="step">客服核对到账后立即发货，可在订单查询里查看结果</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="donePanel" hidden>
+            <div class="panel-head"><h3>发货内容</h3></div>
+            <div class="panel-body stack">
+              <div id="doneAlert"></div>
+              <div id="doneContent"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：收款 -->
+        <div class="panel" id="payPanel">
+          <div class="panel-head"><h3>扫码支付</h3></div>
+          <div class="panel-body stack" id="payBody"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer" data-site-footer></footer>
+
+<script src="/js/common.js"></script>
+<script src="/js/pay.js"></script>
+</body>
+</html>

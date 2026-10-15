@@ -1,0 +1,24 @@
+{
+  "name": "zizhu-shop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "自助下单网站 - 支持卡密自动发货与人工发货，后台可配置微信/支付宝收款码",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "reset": "node scripts/reset.js",
+    "test": "node scripts/smoke.js && node scripts/ui-test.js",
+    "test:api": "node scripts/smoke.js",
+    "test:ui": "node scripts/ui-test.js"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}
